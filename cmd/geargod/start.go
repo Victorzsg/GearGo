@@ -1,8 +1,11 @@
-package node
+package geargod
 
 import (
-"fmt"
-"github.com/spf13/cobra"
+	"fmt"
+	"github.com/spf13/cobra"
+	"strings"
+	"strconv"
+	"github.com/Victorzsg/GearGo/libgeargo-server"
 )
 
 var chaincodeDevMode bool
@@ -18,6 +21,18 @@ var nodeStartCmd = &cobra.Command{
 	},
 }
 func serve(args []string) error {
-	fmt.Println("不要企图爱上哥，哥只是个传说:", args)
+
+	var port int
+	for _,param := range args {
+		s := strings.Split(param, "=")
+		if s[0] ==  "port" {
+			port, _ = strconv.Atoi(s[1])
+			fmt.Println(port)
+		}
+	}
+
+	instance := &libgeargo_server.Geargo_daemon{Port: port,}
+	instance.Start()
+
 	return nil
 }

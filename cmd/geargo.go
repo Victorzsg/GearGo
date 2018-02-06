@@ -4,7 +4,7 @@ import (
 	"github.com/spf13/cobra"
 	"fmt"
 	"os"
-	"github.com/Victorzsg/GearGo/cmd/node"
+	"github.com/Victorzsg/GearGo/cmd/geargod"
 )
 
 var versionFlag bool
@@ -15,7 +15,7 @@ var mainCmd = &cobra.Command{
 	},
 	Run: func(cmd *cobra.Command, args []string) {
 		if versionFlag {
-			//        version.Print()
+			        //version.Print()
 		} else {
 			cmd.HelpFunc()(cmd, args)
 		}
@@ -23,7 +23,7 @@ var mainCmd = &cobra.Command{
 	},
 }
 func main() {
-	mainCmd.AddCommand(node.Cmd())
+	mainCmd.AddCommand(geargod.Cmd())
 	if mainCmd.Execute() != nil {
 		os.Exit(1)
 	}
